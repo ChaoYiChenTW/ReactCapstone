@@ -1,0 +1,136 @@
+/* 讓整個 app 從上到下排 */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 通用容器：決定內容最大寬度與置中 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* 讓 main 撐開中間空間，footer 貼底 */
+.site-main {
+  flex: 1;
+}
+
+/* ---- NAV LAYOUT ---- */
+
+.top-nav {
+  /* 先不管顏色，只排版 */
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- HERO LAYOUT ---- */
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem 0;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-image-placeholder {
+  width: 100%;
+  max-width: 280px;
+  height: 280px;
+  border-radius: 1rem;
+  background: #ccc;
+}
+
+/* ---- SPECIALS LAYOUT ---- */
+
+.specials {
+  padding: 3rem 0;
+}
+
+.specials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* 三張卡片：大螢幕三欄，小螢幕堆疊 */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image {
+  height: 180px;
+  border-radius: 1rem 1rem 0 0;
+  background: #ddd;
+}
+
+.card-body {
+  padding: 1rem;
+  border-radius: 0 0 1rem 1rem;
+  border: 1px solid #eee;
+  border-top: none;
+}
+
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+/* ---- FOOTER LAYOUT ---- */
+
+.site-footer {
+  padding: 1rem 0;
+}
+
+/* ---- RWD：手機時 hero 改為上下排列，cards 改成一欄 ---- */
+
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .specials-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
