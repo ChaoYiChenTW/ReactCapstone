@@ -1,17 +1,6 @@
 import { useState } from "react";
-import '../styles/style.css'
-
-function generateTimes(start = 17, end = 21, interval = 60) {
-  const times = [];
-  for (let hour = start; hour <= end; hour++) {
-    for (let min = 0; min < 60; min += interval) {
-      const h = hour.toString().padStart(2, "0");
-      const m = min.toString().padStart(2, "0");
-      times.push(`${h}:${m}`);
-    }
-  }
-  return times;
-}
+import '../styles/style.css';
+import { initializeTimes } from "../utils/times";
 
 export default function BookingForm() {
     const [date, setDate] = useState("");
@@ -19,7 +8,7 @@ export default function BookingForm() {
     const [guests, setGuests] = useState(1);
     const [occasion, setOccasion] = useState("Birthday");
 
-    const [availableTimes] = useState(generateTimes(17, 21, 30));
+    const [availableTimes] = useState(initializeTimes());
 
     const handleSubmit = (e) => {
         e.preventDefault();
