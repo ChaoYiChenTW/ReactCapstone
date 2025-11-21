@@ -1,3 +1,5 @@
+import hero_image from '../assets/restauranfood.jpg'
+
 export default function Hero() {
   return (
     <section className="hero">
@@ -12,8 +14,9 @@ export default function Hero() {
           <button className="primary-btn">Reserve a Table</button>
         </div>
         <div className="hero-image">
-          {/* 之後換成真正圖片路徑 */}
-          <div className="hero-image-placeholder">Hero Image</div>
+          <div className="hero-image-placeholder">
+            <img src={hero_image} alt="Hero" />
+          </div>
         </div>
       </div>
     </section>

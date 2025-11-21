@@ -1,3 +1,7 @@
+import lemon_dessert from '../assets/lemon dessert.jpg'
+import bruchetta from '../assets/bruchetta.svg'
+import greek_salad from '../assets/greek salad.jpg'
+
 export default function Specials() {
   return (
     <section className="specials container">
@@ -8,7 +12,9 @@ export default function Specials() {
 
       <div className="cards">
         <article className="card">
-          <div className="card-image">Image</div>
+          <div className="card-image">
+            <img src={greek_salad} alt="Greek salad" />
+          </div>
           <div className="card-body">
             <div className="card-title-row">
               <h3>Greek salad</h3>
@@ -24,7 +30,9 @@ export default function Specials() {
         </article>
 
         <article className="card">
-          <div className="card-image">Image</div>
+          <div className="card-image">
+            <img src={bruchetta} alt="Bruschetta" />
+          </div>
           <div className="card-body">
             <div className="card-title-row">
               <h3>Bruschetta</h3>
@@ -39,7 +47,9 @@ export default function Specials() {
         </article>
 
         <article className="card">
-          <div className="card-image">Image</div>
+          <div className="card-image">
+            <img src={lemon_dessert} alt="Lemon Dessert" />
+          </div>
           <div className="card-body">
             <div className="card-title-row">
               <h3>Lemon Dessert</h3>
