@@ -1,25 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../styles/style.css';
-import { initializeTimes } from "../utils/times";
 
-export default function BookingForm() {
+export default function BookingForm({ availableTimes, dispatch }) {
     const [date, setDate] = useState("");
     const [selectedTime, setSelectedTime] = useState("");
     const [guests, setGuests] = useState(1);
     const [occasion, setOccasion] = useState("Birthday");
 
-    const [availableTimes] = useState(initializeTimes());
+    // 每次 availableTimes 改變時，檢查目前選到的 time 是否還存在
+    // 如果沒有，就自動選第一個
+    useEffect(() => {
+        if (availableTimes.length === 0) {
+            setSelectedTime("");
+            return;
+        }
+        if (!availableTimes.includes(selectedTime)) {
+            setSelectedTime(availableTimes[0]);
+        }
+    }, [availableTimes, selectedTime]);
+
+    const handleDateChange = (e) => {
+        const value = e.target.value;
+        setDate(value);
+        dispatch({ type: "update_times", date: value });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // 這裡先簡單印出來（之後會改成叫 API）
-        console.log({
-            date,
-            selectedTime,
-            guests,
-            occasion,
-        });
-        alert(`Booking submitted! ${date} ${selectedTime}, ${guests} guests, ${occasion}`);
+        console.log({ date, selectedTime, guests, occasion });
+        alert(`Booking submitted: ${date} ${selectedTime}, ${guests} guests, ${occasion}`);
     };
 
     return (
@@ -27,10 +36,11 @@ export default function BookingForm() {
             <div className="booking-form-field">
                 <label htmlFor="res-date">Choose date</label>
                 <input
-                    type="date"
-                    id="res-date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
+                type="date"
+                id="res-date"
+                value={date}
+                onChange={handleDateChange}
+                required
                 />
             </div>
 
@@ -38,13 +48,11 @@ export default function BookingForm() {
                 <label htmlFor="res-time">Choose time</label>
                     <select
                     id="res-time"
-                        value={selectedTime}
-                        onChange={(e) => setSelectedTime(e.target.value)}
-                        >
+                    value={selectedTime}
+                    onChange={(e) => setSelectedTime(e.target.value)}
+                    >
                         {availableTimes.map((t) => (
-                            <option key={t} value={t}>
-                            {t}
-                            </option>
+                            <option key={t}>{t}</option>
                         ))}
                     </select>
             </div>
@@ -52,8 +60,8 @@ export default function BookingForm() {
             <div className="booking-form-field">
                 <label htmlFor="guests">Number of guests</label>
                 <input
-                    type="number"
-                    id="guests"
+                type="number"
+                id="guests"
                 min="1"
                 max="10"
                 value={guests}
@@ -64,9 +72,9 @@ export default function BookingForm() {
             <div className="booking-form-field">
                 <label htmlFor="occasion">Occasion</label>
                 <select
-                    id="occasion"
-                    value={occasion}
-                    onChange={(e) => setOccasion(e.target.value)}
+                id="occasion"
+                value={occasion}
+                onChange={(e) => setOccasion(e.target.value)}
                 >
                     <option value="Birthday">Birthday</option>
                     <option value="Anniversary">Anniversary</option>
