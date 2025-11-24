@@ -11,7 +11,7 @@ export default function Hero() {
             We are a family owned Mediterranean restaurant, focused on
             traditional recipes served with a modern twist.
           </p>
-          <button className="primary-btn">Reserve a Table</button>
+          <button className="primary-btn" aria-label="Reserve a Table">Reserve a Table</button>
         </div>
         <div className="hero-image">
           <div className="hero-image-placeholder">
