@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import '../styles/style.css';
 
-export default function BookingForm({ availableTimes, dispatch }) {
+export default function BookingForm({ availableTimes, dispatch, submitForm }) {
     const [date, setDate] = useState("");
     const [selectedTime, setSelectedTime] = useState("");
     const [guests, setGuests] = useState(1);
@@ -27,8 +27,13 @@ export default function BookingForm({ availableTimes, dispatch }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({ date, selectedTime, guests, occasion });
-        alert(`Booking submitted: ${date} ${selectedTime}, ${guests} guests, ${occasion}`);
+        const formData = {
+            date,
+            selectedTime,
+            guests,
+            occasion,
+        };
+        submitForm(formData); // ★ 關鍵
     };
 
     return (

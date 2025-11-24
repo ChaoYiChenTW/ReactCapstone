@@ -2,13 +2,7 @@ import { useReducer } from "react";
 import BookingForm from "../components/BookingForm";
 import { initializeTimes, updateTimes } from "../utils/times";
 
-export default function BookingPage() {
-    const [availableTimes, dispatch] = useReducer(
-        updateTimes,
-        [],
-        initializeTimes
-    );
-
+export default function BookingPage({ availableTimes, dispatch, submitForm }) {
     return (
         <main className="booking-page">
         <h1>Reserve a table</h1>
@@ -16,6 +10,7 @@ export default function BookingPage() {
         <BookingForm
             availableTimes={availableTimes}
             dispatch={dispatch}
+            submitForm={submitForm}
         />
         </main>
     );
